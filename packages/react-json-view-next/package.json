@@ -1,6 +1,6 @@
 {
   "name": "react-json-view-next",
-  "version": "1.21.3",
+  "version": "1.22.0",
   "type": "module",
   "description": "Interactive JSON viewer component for React 19 with Base16 theming and strict TypeScript",
   "main": "./dist/index.cjs",
