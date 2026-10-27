@@ -1,4 +1,5 @@
-import type React from 'react';
+// biome-ignore lint/style/useImportType: React runtime value is required by Storybook manager bundler
+import React from 'react';
 import { addons, types, useParameter } from 'storybook/manager-api';
 import pkg from '../../react-json-view-next/package.json';
 
