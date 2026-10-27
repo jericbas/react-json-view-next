@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
-      - develop
   workflow_dispatch:
     inputs:
       redeploy_storybook:
@@ -24,7 +22,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions:
   contents: write
@@ -102,7 +100,7 @@ jobs:
   deploy-storybook:
     name: Deploy Storybook to GitHub Pages
     needs: [changes, ci]
-    # Deploys on push to main or develop if storybook or package changed,
+    # Deploys on push to main if storybook or package changed,
     # or on manual redeploy input.
     if: |
       always() &&
@@ -110,7 +108,7 @@ jobs:
       (
         github.event.inputs.redeploy_storybook == 'true' ||
         (
-          (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
+          github.ref == 'refs/heads/main' &&
           github.event_name == 'push' &&
           (needs.changes.outputs.storybook == 'true' || needs.changes.outputs.package == 'true')
         )
@@ -150,14 +148,14 @@ jobs:
   release-and-publish:
     name: Release Please & NPM Publish
     needs: [changes, ci]
-    # Runs on main or develop pushes when package code changes, or manual republish
+    # Runs on main pushes when package code changes, or manual republish
     if: |
       always() &&
       (needs.ci.result == 'success' || needs.ci.result == 'skipped') &&
       (
         github.event.inputs.republish_npm == 'true' ||
         (
-          (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
+          github.ref == 'refs/heads/main' &&
           github.event_name == 'push' &&
           needs.changes.outputs.package == 'true'
         )
