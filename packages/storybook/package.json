@@ -1,6 +1,6 @@
 {
   "name": "@react-json-view/storybook",
-  "version": "1.21.3",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "dependencies": {

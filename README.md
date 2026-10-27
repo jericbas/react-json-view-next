@@ -4,9 +4,13 @@
 
 # react-json-view-next
 
-> 🚧 **Under Construction**: This repository is currently undergoing active modernization and development. We are updating the library with complete React 19 support, a TypeScript rewrite, an NPM workspaces monorepo architecture, and automated CI/CD pipelines. Features and documentation are evolving.
+> 🚧 **Under Construction**: This package is newly modernized and upgraded (React 19 support, TypeScript rewrite, tree-shakeable plugin architecture, and automated CI/CD pipelines). There might still be some unexpected issues or edge cases—if you run into anything, please feel free to [open an issue](https://github.com/jericbas/react-json-view-next/issues) or submit a [pull request](https://github.com/jericbas/react-json-view-next/pulls)!
 >
 > 🚀 **Live Storybook Demo & Documentation:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
+>
+> ℹ️ **Repository & Versioning Note**:
+> - **Version 1 (`v1.x`)**: Represents the original repository ([mac-s-g/react-json-view](https://github.com/mac-s-g/react-json-view)) created by Mac Gainor. The original codebase and final release (`v1.21.3`) are preserved on the [`main`](https://github.com/jericbas/react-json-view-next/tree/main) branch and tagged as [`v1.21.3`](https://github.com/jericbas/react-json-view-next/releases/tag/v1.21.3).
+> - **Version 2 (`v2.x`)**: Represents this modernized continuation (`react-json-view-next`), starting at `2.0.0` and rewritten from the ground up for React 19, strict TypeScript, modular tree-shakeable plugins, and high-performance rendering.
 
 RJV is a React component for displaying and editing javascript **arrays** and **JSON objects**.
 
@@ -333,6 +337,8 @@ A zero-dependency Git pre-commit hook in `.githooks/pre-commit` runs `biome chec
 
 ### Migration Guide (v1 -> v2)
 
+> **Note on Versioning**: Version 1 (`v1.x`) refers to the original [mac-s-g/react-json-view](https://github.com/mac-s-g/react-json-view) repository (final release `v1.21.3`). Version 2 (`v2.x`) begins with `react-json-view-next` starting at `v2.0.0`, delivering complete React 19 support, strict TypeScript definitions, and tree-shakeable plugins.
+
 #### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
 
 If you are upgrading from legacy `react-json-view` v1 and want 100% backward compatibility without changing any props (`onEdit`, `onAdd`, `onDelete`, `enableClipboard`, Base16 string themes), simply change your import:
@@ -363,9 +369,3 @@ import ReactJson from 'react-json-view-next/compat';
 | **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking              | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view-next/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired)          |
 | **Themes (Base16 / Custom)**                | 40+ themes bundled                  | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view-next/themes'` or custom `ThemeObject`                  | String theme names (e.g. `theme="monokai"`) auto-resolved |
 | **Bundle Size**                             | ~150 kB+                            | ~15 kB (gzipped ~4 kB)                 | Pay only for plugins & themes you use                                                            | ~35 kB (bundles editor + clipboard + themes)              |
-
-### Inspiration
-
-I drew a ton of design ideas from [react-json-tree](https://github.com/alexkuz/react-json-tree). Thanks to the RJT contributors for putting together an awesome component!
-
-I'm also inspired by users who come up with interesting feature requests. Reach out to me with ideas for this project or other projects you want to collaborate on. My email address is listed on my [github user page](https://github.com/mac-s-g).

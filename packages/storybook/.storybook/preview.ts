@@ -4,7 +4,7 @@ import pkg from '../../react-json-view-next/package.json';
 
 registerAllThemes();
 
-const [major = '1', minor = '21', patch = '3'] = pkg.version.split('.');
+const [major = '2', minor = '0', patch = '0'] = pkg.version.split('.');
 
 const preview: Preview = {
   parameters: {
