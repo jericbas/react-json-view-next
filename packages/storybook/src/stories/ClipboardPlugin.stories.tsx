@@ -4,9 +4,9 @@ import { withClipboard } from 'react-json-view-next/plugins/clipboard';
 
 const sampleUserData = {
   id: 101,
-  username: 'jericbas',
-  profileUrl: 'https://github.com/jericbas',
-  roles: ['maintainer', 'architect'],
+  username: 'keanu_reeves',
+  profileUrl: 'https://en.wikipedia.org/wiki/Keanu_Reeves',
+  roles: ['actor', 'musician'],
   settings: {
     notifications: true,
     theme: 'dark'

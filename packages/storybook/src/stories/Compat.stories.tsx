@@ -28,20 +28,13 @@ export const DefaultCompat: Story = {
   }
 };
 
-export const LegacyMonokaiWithEditor: Story = {
+export const KeyAndValuesOnly: Story = {
+  name: 'Key & Values Only (No Data Types)',
   args: {
     src: sampleData,
     name: 'root',
-    theme: 'monokai',
-    enableClipboard: true,
-    onEdit: edit => {
-      console.log('onEdit:', edit);
-    },
-    onAdd: add => {
-      console.log('onAdd:', add);
-    },
-    onDelete: del => {
-      console.log('onDelete:', del);
-    }
+    displayDataTypes: false,
+    displayObjectSize: false,
+    enableClipboard: true
   }
 };

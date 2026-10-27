@@ -28,7 +28,7 @@ const meta: Meta<typeof ReactJson> = {
     docs: {
       description: {
         component:
-          '> 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript. Live Storybook Demo & Documentation: [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)'
+          '> 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript.'
       }
     }
   },
@@ -132,6 +132,22 @@ export const Editable: Story = {
     onDelete: del => {
       console.log('Delete submitted:', del);
     }
+  }
+};
+
+export const KeyAndValuesOnly: Story = {
+  name: 'Key & Values Only (No Data Types)',
+  args: {
+    src: sampleData,
+    name: 'root',
+    theme: 'rjv-default',
+    iconStyle: 'triangle',
+    collapsed: false,
+    indentWidth: 4,
+    displayDataTypes: false,
+    displayObjectSize: false,
+    enableClipboard: true,
+    quotesOnKeys: true
   }
 };
 

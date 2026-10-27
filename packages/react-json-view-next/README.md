@@ -1,4 +1,4 @@
-![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/rjv-icon-alt.png?raw=true)
+![react-json-view-next](https://raw.githubusercontent.com/jericbas/react-json-view-next/main/doc/rjv-icon-alt.png)
 
 [![npm](https://img.shields.io/npm/v/react-json-view-next.svg)](https://www.npmjs.com/package/react-json-view-next) [![npm](https://img.shields.io/npm/l/react-json-view-next.svg)](./LICENSE) [![CI](https://github.com/jericbas/react-json-view-next/actions/workflows/ci.yml/badge.svg)](https://github.com/jericbas/react-json-view-next/actions/workflows/ci.yml)
 
@@ -14,7 +14,7 @@
 
 RJV is a React component for displaying and editing javascript **arrays** and **JSON objects**.
 
-This component provides a responsive interface for displaying arrays or JSON in a web browser. NPM offers a distribution of the source that's transpiled to ES5; so you can include this component with _any web-based javascript application_.
+This component provides a responsive, customizable interface for displaying arrays or JSON in a web browser. Built with Vite into modern ES Modules (`.mjs`), CommonJS (`.cjs`), and TypeScript declarations (`.d.ts`), optimized for React 19 and modern bundlers.
 - 📖 **Storybook Demo:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
 - 📘 **Props Reference:** [Storybook Props Documentation](https://jericbas.github.io/react-json-view-next/?path=/docs/documentation-props--docs)
 
@@ -196,10 +196,11 @@ function AsyncJsonViewer() {
 
 #### Default Theme
 
-![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/output-example-15.png?raw=true "Output Example 1")
+![Default Theme](https://raw.githubusercontent.com/jericbas/react-json-view-next/main/doc/output-example-15.png "Output Example 1")
+
 #### Hopscotch Theme, with Triangle Icons:
 
-![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/output-example-14.png?raw=true "Output Example 2")
+![Hopscotch Theme](https://raw.githubusercontent.com/jericbas/react-json-view-next/main/doc/output-example-14.png "Output Example 2")
 
 ### Installation Instructions
 
@@ -226,14 +227,17 @@ For the complete and interactive props reference, callbacks guide, and live comp
 
 ### Features
 
-- `onEdit`, `onAdd` and `onDelete` props allow users to edit the `src` variable
+- `onEdit`, `onAdd` and `onDelete` callbacks allow users to edit the `src` variable (via `withEditor` plugin or compat mode)
+- `displayDataTypes`: toggle display of data type labels (`string`, `int`, `float`, `bool`, etc.) on/off to display keys and values only
 - Object, array, string and function values can be collapsed and expanded
-- Object and array nodes display length
-- Object and array nodes support a "Copy to Clipboard" feature
-- String values can be truncated after a specified length
-- Arrays can be subgrouped after a specified length
-- Base-16 Theme Support
-- When `onEdit` is enabled:
+- Object and array nodes display length and item counts
+- Object and array nodes support a "Copy to Clipboard" feature (`withClipboard` plugin)
+- String values can be truncated after a specified length (`collapseStringsAfterLength`)
+- Arrays can be subgrouped after a specified length (`groupArraysAfterLength`)
+- 40+ Base-16, popular community, and custom themes, plus support for custom `ThemeObject` palettes
+- Native React 19 `<Suspense>` unwrapping for asynchronous data promises
+- High performance virtualization (`withVirtualizer` plugin) for massive datasets
+- When editing is enabled:
   - `Ctrl/Cmd+Click` Edit Mode
   - `Ctrl/Cmd+Enter` Submit
 
@@ -241,44 +245,139 @@ For the complete and interactive props reference, callbacks guide, and live comp
 
 #### Stock Themes
 
-RJV now supports base-16 themes!
+`react-json-view-next` supports 40+ Base-16, popular community, and custom color themes!
 
-You can specify a `theme` name or object when you instantiate your rjv component.
-```jsx
-<ReactJson src={my_important_json} theme="monokai" />;
+You can specify a `theme` by name as a string:
+```tsx
+import { JsonViewer } from 'react-json-view-next';
+
+<JsonViewer src={my_important_json} theme="monokai" />;
 ```
-Check out the list of supported themes [in the Storybook demo](https://jericbas.github.io/react-json-view-next/). A custom "rjv-default" theme applies by default.
 
-#### Monokai theme example
+Or import individual themes for tree-shaking from `react-json-view-next/themes`:
+```tsx
+import { JsonViewer } from 'react-json-view-next';
+import { monokai, dracula, nord, tokyonight } from 'react-json-view-next/themes';
 
-![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/output-example-monokai-2.png?raw=true "Base-16 Theme Example")
+<JsonViewer src={my_important_json} theme={dracula} />;
+```
 
-#### Solarized theme example
+Check out the interactive theme showcase [in the Storybook demo](https://jericbas.github.io/react-json-view-next/?path=/docs/themes-base16themes--docs). The `"rjv-default"` theme applies by default.
 
-![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/output-example-solarized-2.png?raw=true "Base-16 Theme Example")
+#### Monokai Theme Example
+
+![Monokai Theme Example](https://raw.githubusercontent.com/jericbas/react-json-view-next/main/doc/output-example-monokai-2.png "Base-16 Theme Example")
+
+#### Solarized Theme Example
+
+![Solarized Theme Example](https://raw.githubusercontent.com/jericbas/react-json-view-next/main/doc/output-example-solarized-2.png "Base-16 Theme Example")
 
 #### Use Your Own Theme
 
-You can supply your own base-16 theme object.
+You can supply your own custom Base-16 theme object matching the `ThemeObject` interface:
 
-To better understand custom themes, take a look at [my example implementation](https://github.com/mac-s-g/react-json-view/blob/7c154b9a7d83ea89dce2c171ebdf4d163ff49233/dev-server/src/index.js#L135) and the [base-16 theme styling guidelines](https://github.com/chriskempson/base16/blob/master/styling.md).
+```tsx
+import { JsonViewer, type ThemeObject } from 'react-json-view-next';
+
+const myCustomTheme: ThemeObject = {
+  scheme: 'cyberpunk',
+  author: 'react-json-view-next',
+  base00: '#000b1e', // Default Background
+  base01: '#051937', // Lighter Background (used for status bars, line numbers)
+  base02: '#0b2e59', // Selection Background
+  base03: '#1a4980', // Comments, Invisibles, Line Highlighting
+  base04: '#3273a8', // Dark Foreground (Used for status bars)
+  base05: '#00e5ff', // Default Foreground, Caret, Delimiters, Operators
+  base06: '#76ffff', // Light Foreground (Not often used)
+  base07: '#ffffff', // Light Background (Not often used)
+  base08: '#ff0055', // Variables, XML Tags, Markup Search, Diff Removed
+  base09: '#ff7700', // Integers, Boolean, Constants, XML Attributes
+  base0A: '#ffe600', // Classes, Markup Bold, Search Text Background
+  base0B: '#00ff66', // Strings, Inherited Class, Markup Code, Diff Inserted
+  base0C: '#00ffff', // Support, Regular Expressions, Escape Characters
+  base0D: '#0088ff', // Functions, Methods, Attribute IDs, Headings
+  base0E: '#cc00ff', // Keywords, Storage, Selector, Diff Changed
+  base0F: '#ff00aa' // Deprecated, Opening/Closing Embedded Language Tags
+};
+
+<JsonViewer src={my_important_json} theme={myCustomTheme} />;
+```
+
+You can also pass inline styles to the outer container via the `style` prop:
+
+```tsx
+<JsonViewer
+  src={my_important_json}
+  theme={myCustomTheme}
+  style={{
+    padding: '1rem',
+    borderRadius: '8px',
+    fontFamily: 'monospace',
+    fontSize: '13px'
+  }}
+/>;
+```
+
+For more details on the Base-16 color palette architecture, see the [Base-16 Theme Styling Guidelines](https://github.com/chriskempson/base16/blob/master/styling.md) and preview custom themes in our [Storybook CustomThemes Documentation](https://jericbas.github.io/react-json-view-next/?path=/docs/themes-customthemes--docs).
 
 ### onEdit, onAdd and onDelete Interaction
 
-Pass callback methods to `onEdit`, `onAdd` and `onDelete` props. Your method will be invoked when a user attempts to update your `src` object.
+In `react-json-view-next`, interactive editing is decoupled into the tree-shakeable editor plugin:
 
-The following object will be passed to your method:
-```js
-{
-    updated_src: src, //new src value
-    name: name, //new var name
-    namespace: namespace, //list, namespace indicating var location
-    new_value: new_value, //new variable value
-    existing_value: existing_value, //existing variable value
+```tsx
+import { JsonViewer } from 'react-json-view-next';
+import { withEditor, type InteractionProps } from 'react-json-view-next/plugins/editor';
+
+<JsonViewer
+  src={my_important_json}
+  plugins={[
+    withEditor({
+      onEdit: (edit: InteractionProps) => {
+        console.log('Node edited:', edit);
+        // Return false to cancel the modification and keep existing value
+        if (edit.new_value === '') return false;
+      },
+      onAdd: (add: InteractionProps) => {
+        console.log('Key added:', add);
+      },
+      onDelete: (del: InteractionProps) => {
+        console.log('Key deleted:', del);
+      },
+      validationMessage: 'Custom validation message when returning false'
+    })
+  ]}
+/>;
+```
+
+If you are using the backward-compatible wrapper (`react-json-view-next/compat`), you can also pass them directly as props:
+
+```tsx
+import ReactJson, { type InteractionProps } from 'react-json-view-next/compat';
+
+<ReactJson
+  src={my_important_json}
+  onEdit={(edit: InteractionProps) => console.log('Edited:', edit)}
+  onAdd={(add: InteractionProps) => console.log('Added:', add)}
+  onDelete={(del: InteractionProps) => console.log('Deleted:', del)}
+/>;
+```
+
+#### Interaction Object Structure
+
+The following typed `InteractionProps` object is passed to your callbacks:
+
+```ts
+interface InteractionProps {
+  updated_src: object | unknown[]; // New JSON tree after the change
+  existing_src: object | unknown[]; // Tree prior to the change
+  name: string | number | null; // Key or index of the affected node
+  namespace: Array<string | number | null>; // Path array indicating node depth & location
+  new_value?: unknown; // New variable value (onEdit, onAdd)
+  existing_value: unknown; // Existing variable value
 }
 ```
 
-Returning `false` from a callback method will prevent the src from being affected.
+Returning `false` from your `onEdit` callback will prevent the `src` from being updated and display the validation failure banner.
 
 ### Contributing to the source code
 
@@ -337,7 +436,7 @@ A zero-dependency Git pre-commit hook in `.githooks/pre-commit` runs `biome chec
 
 ### Migration Guide (v1 -> v2)
 
-> **Note on Versioning**: Version 1 (`v1.x`) refers to the original [mac-s-g/react-json-view](https://github.com/mac-s-g/react-json-view) repository (final release `v1.21.3`). Version 2 (`v2.x`) begins with `react-json-view-next` starting at `v2.0.0`, delivering complete React 19 support, strict TypeScript definitions, and tree-shakeable plugins.
+> **Note on Versioning**: Version 1 (`v1.x`) refers to legacy `react-json-view` (final release `v1.21.3`). Version 2 (`v2.x`) begins with `react-json-view-next` starting at `v2.0.0`, delivering complete React 19 support, strict TypeScript definitions, and tree-shakeable plugins.
 
 #### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
 
