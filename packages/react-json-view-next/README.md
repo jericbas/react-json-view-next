@@ -4,7 +4,7 @@
 
 # react-json-view-next
 
-> 🚧 **Under Construction**: This repository is currently undergoing active modernization and development. We are updating the library with complete React 19 support, a TypeScript rewrite, an NPM workspaces monorepo architecture, and automated CI/CD pipelines. Features and documentation are evolving.
+> 🚧 **Under Construction**: This package is newly modernized and upgraded (React 19 support, TypeScript rewrite, tree-shakeable plugin architecture, and automated CI/CD pipelines). There might still be some unexpected issues or edge cases—if you run into anything, please feel free to [open an issue](https://github.com/jericbas/react-json-view-next/issues) or submit a [pull request](https://github.com/jericbas/react-json-view-next/pulls)!
 >
 > 🚀 **Live Storybook Demo & Documentation:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
 >
@@ -369,9 +369,3 @@ import ReactJson from 'react-json-view-next/compat';
 | **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking              | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view-next/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired)          |
 | **Themes (Base16 / Custom)**                | 40+ themes bundled                  | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view-next/themes'` or custom `ThemeObject`                  | String theme names (e.g. `theme="monokai"`) auto-resolved |
 | **Bundle Size**                             | ~150 kB+                            | ~15 kB (gzipped ~4 kB)                 | Pay only for plugins & themes you use                                                            | ~35 kB (bundles editor + clipboard + themes)              |
-
-### Inspiration
-
-I drew a ton of design ideas from [react-json-tree](https://github.com/alexkuz/react-json-tree). Thanks to the RJT contributors for putting together an awesome component!
-
-I'm also inspired by users who come up with interesting feature requests. Reach out to me with ideas for this project or other projects you want to collaborate on. My email address is listed on my [github user page](https://github.com/mac-s-g).
