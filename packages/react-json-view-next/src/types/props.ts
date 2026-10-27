@@ -19,7 +19,7 @@ export interface JsonViewerProps {
   collapsed?: boolean | number;
   collapseStringsAfterLength?: number | false;
   shouldCollapse?: false | ((field: CollapsedFieldProps) => boolean);
-  groupArraysAfterLength?: number;
+  groupArraysAfterLength?: number | false;
   displayObjectSize?: boolean;
   displayDataTypes?: boolean;
   quotesOnKeys?: boolean;
@@ -53,7 +53,7 @@ export interface ReactJsonViewProps {
    */
   theme?: ThemeKeys | ThemeObject;
   /**
-   * Style attributes for react-json-view container.
+   * Style attributes for react-json-view-next container.
    * Explicit style attributes will override attributes provided by a theme.
    */
   style?: React.CSSProperties;
@@ -97,7 +97,7 @@ export interface ReactJsonViewProps {
    *
    * Default: 100
    */
-  groupArraysAfterLength?: number;
+  groupArraysAfterLength?: number | false;
   /**
    * When prop is not false, the user can copy objects and arrays to clipboard by clicking on the clipboard icon.
    * Copy callbacks are supported.

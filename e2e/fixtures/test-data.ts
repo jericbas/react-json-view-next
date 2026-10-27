@@ -7,7 +7,7 @@ export const sampleJsonData = {
   nanValue: NaN,
   array: [1, 2, 'three', { nested: 'value' }],
   nestedObject: {
-    name: 'react-json-view',
+    name: 'react-json-view-next',
     version: '1.21.3',
     modernized: true
   }

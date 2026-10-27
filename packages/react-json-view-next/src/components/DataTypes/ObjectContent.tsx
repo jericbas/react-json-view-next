@@ -27,7 +27,7 @@ export interface ObjectContentProps {
   rjvId?: string | undefined;
   indentWidth: number;
   shouldCollapse?: false | ((field: CollapsedFieldProps) => boolean) | undefined;
-  groupArraysAfterLength: number;
+  groupArraysAfterLength: number | false;
   [key: string]: any;
 }
 

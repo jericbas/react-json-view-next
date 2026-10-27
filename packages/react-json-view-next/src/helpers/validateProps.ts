@@ -25,7 +25,7 @@ export function validateProps(
   let theme: ThemeKeys | ThemeObject = themeProp ?? 'rjv-default';
   if (toType(theme) === 'object' && !isTheme(theme)) {
     console.error(
-      'react-json-view error:',
+      'react-json-view-next error:',
       'theme prop must be a theme name or valid base-16 theme object.',
       'defaulting to "rjv-default" theme'
     );
@@ -35,7 +35,7 @@ export function validateProps(
   let src = srcProp;
   let name = nameProp;
   if (toType(src) !== 'object' && toType(src) !== 'array') {
-    console.error('react-json-view error:', 'src property must be a valid json object');
+    console.error('react-json-view-next error:', 'src property must be a valid json object');
     name = 'ERROR';
     src = {
       message: 'src property must be a valid json object'

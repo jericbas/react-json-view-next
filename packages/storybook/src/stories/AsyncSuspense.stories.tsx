@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type React from 'react';
 import { Suspense, useMemo } from 'react';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 function fetchMockJsonData(delayMs = 1200): Promise<object> {
   return new Promise(resolve => {

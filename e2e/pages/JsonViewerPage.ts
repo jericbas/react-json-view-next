@@ -11,7 +11,7 @@ export class JsonViewerPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.container = page.locator('.react-json-view');
+    this.container = page.locator('.react-json-view-next, .react-json-view');
     this.objectKeyVal = page.locator('.object-key-val');
     this.dataTypeLabels = page.locator('.data-type-label');
     this.objectSizes = page.locator('.object-size');

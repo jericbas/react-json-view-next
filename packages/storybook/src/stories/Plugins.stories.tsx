@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { JsonViewer, type JsonViewPlugin } from 'react-json-view';
+import { JsonViewer, type JsonViewPlugin } from 'react-json-view-next';
 
 const sampleUserData = {
   id: 101,

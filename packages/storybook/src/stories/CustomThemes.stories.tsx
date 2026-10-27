@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson, { type ThemeObject } from 'react-json-view';
+import ReactJson, { type ThemeObject } from 'react-json-view-next';
 
 const sampleObject = {
   themeGroup: 'Custom & Invented Themes',
@@ -13,7 +13,7 @@ const sampleObject = {
 
 const customCyberpunkTheme: ThemeObject = {
   scheme: 'cyberpunk',
-  author: 'react-json-view',
+  author: 'react-json-view-next',
   base00: '#000b1e',
   base01: '#051937',
   base02: '#0b2e59',

@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
@@ -9,12 +9,68 @@ on:
     branches:
       - main
       - develop
+  workflow_dispatch:
+    inputs:
+      redeploy_storybook:
+        description: 'Force rebuild and redeploy Storybook to GitHub Pages'
+        type: boolean
+        required: false
+        default: false
+      republish_npm:
+        description: 'Force build and publish package to NPM registry'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  id-token: write
 
 jobs:
-  ci:
-    name: Lint, Test & Build
+  changes:
+    name: Detect Changed Paths
     runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.filter.outputs.package }}
+      storybook: ${{ steps.filter.outputs.storybook }}
+      storybook_only: ${{ steps.filter.outputs.storybook == 'true' && steps.filter.outputs.package == 'false' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Check for file changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            package:
+              - 'packages/react-json-view-next/**'
+              - 'scripts/**'
+              - 'biome.json'
+              - 'tsconfig*.json'
+              - 'package.json'
+              - 'package-lock.json'
+              - '.release-please*'
+              - 'release-please*'
+            storybook:
+              - 'packages/storybook/**'
+
+  ci:
+    name: Lint, Test & Build Package
+    needs: changes
+    # Run if package code changed, or on manual dispatch / republish request.
+    # Skips if only Storybook / demo files were modified in PR/push.
+    if: |
+      needs.changes.outputs.package == 'true' ||
+      github.event.inputs.republish_npm == 'true' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.redeploy_storybook != 'true')
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,3 +98,103 @@ jobs:
 
       - name: Build library (Vite)
         run: npm run build
+
+  deploy-storybook:
+    name: Deploy Storybook to GitHub Pages
+    needs: [changes, ci]
+    # Deploys on push to main or develop if storybook or package changed,
+    # or on manual redeploy input.
+    if: |
+      always() &&
+      (needs.ci.result == 'success' || needs.ci.result == 'skipped') &&
+      (
+        github.event.inputs.redeploy_storybook == 'true' ||
+        (
+          (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
+          github.event_name == 'push' &&
+          (needs.changes.outputs.storybook == 'true' || needs.changes.outputs.package == 'true')
+        )
+      )
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build:storybook
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'packages/storybook/storybook-static'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  release-and-publish:
+    name: Release Please & NPM Publish
+    needs: [changes, ci]
+    # Runs on main or develop pushes when package code changes, or manual republish
+    if: |
+      always() &&
+      (needs.ci.result == 'success' || needs.ci.result == 'skipped') &&
+      (
+        github.event.inputs.republish_npm == 'true' ||
+        (
+          (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
+          github.event_name == 'push' &&
+          needs.changes.outputs.package == 'true'
+        )
+      )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Release Please
+        id: release
+        if: github.event.inputs.republish_npm != 'true'
+        uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - name: Checkout repository for publishing
+        if: steps.release.outputs['packages/react-json-view-next--release_created'] == 'true' || github.event.inputs.republish_npm == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for NPM publication
+        if: steps.release.outputs['packages/react-json-view-next--release_created'] == 'true' || github.event.inputs.republish_npm == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        if: steps.release.outputs['packages/react-json-view-next--release_created'] == 'true' || github.event.inputs.republish_npm == 'true'
+        run: npm ci
+
+      - name: Build library
+        if: steps.release.outputs['packages/react-json-view-next--release_created'] == 'true' || github.event.inputs.republish_npm == 'true'
+        run: npm run build
+
+      - name: Publish to NPM
+        if: steps.release.outputs['packages/react-json-view-next--release_created'] == 'true' || github.event.inputs.republish_npm == 'true'
+        run: |
+          cd packages/react-json-view-next
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
