@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 const sampleObject = {
   themeGroup: 'Popular Community Themes',

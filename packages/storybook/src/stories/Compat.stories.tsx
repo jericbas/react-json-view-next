@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJsonCompat from 'react-json-view/compat';
+import ReactJsonCompat from 'react-json-view-next/compat';
 
 const sampleData = {
   string: 'this is a test string',

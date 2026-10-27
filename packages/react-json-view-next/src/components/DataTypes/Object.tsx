@@ -26,7 +26,7 @@ export interface RjvObjectProps {
   indentWidth?: number | undefined;
   shouldCollapse?: false | ((field: CollapsedFieldProps) => boolean) | undefined;
   sortKeys?: boolean | undefined;
-  groupArraysAfterLength?: number | undefined;
+  groupArraysAfterLength?: number | false | undefined;
   index_offset?: number | undefined;
   [key: string]: any;
 }

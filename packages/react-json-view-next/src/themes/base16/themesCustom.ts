@@ -3,7 +3,7 @@ import type { ThemeObject } from '../../types';
 export const themesCustom: Record<string, ThemeObject> = {
   aurora: {
     scheme: 'aurora',
-    author: 'react-json-view',
+    author: 'react-json-view-next',
     base00: '#07111a',
     base01: '#0e1f2f',
     base02: '#17324a',
@@ -23,7 +23,7 @@ export const themesCustom: Record<string, ThemeObject> = {
   },
   matcha: {
     scheme: 'matcha',
-    author: 'react-json-view',
+    author: 'react-json-view-next',
     base00: '#141d17',
     base01: '#1e2b22',
     base02: '#2c3e32',
@@ -43,7 +43,7 @@ export const themesCustom: Record<string, ThemeObject> = {
   },
   nebula: {
     scheme: 'nebula',
-    author: 'react-json-view',
+    author: 'react-json-view-next',
     base00: '#0d091a',
     base01: '#18112e',
     base02: '#271c47',
@@ -63,7 +63,7 @@ export const themesCustom: Record<string, ThemeObject> = {
   },
   obsidian: {
     scheme: 'obsidian',
-    author: 'react-json-view',
+    author: 'react-json-view-next',
     base00: '#111215',
     base01: '#1a1c21',
     base02: '#282b33',
@@ -83,7 +83,7 @@ export const themesCustom: Record<string, ThemeObject> = {
   },
   sakura: {
     scheme: 'sakura',
-    author: 'react-json-view',
+    author: 'react-json-view-next',
     base00: '#1c1219',
     base01: '#291b25',
     base02: '#3d2837',

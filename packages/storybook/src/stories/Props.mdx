@@ -1,5 +1,5 @@
 import { Meta, ArgTypes } from '@storybook/addon-docs/blocks';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 <Meta title="Documentation/Props" />
 
@@ -7,7 +7,7 @@ import ReactJson from 'react-json-view';
 
 > 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript. Props and features are continuously updated.
 >
-> 🌐 **Interactive Storybook Demo:** [https://jericbas.github.io/react-json-view/](https://jericbas.github.io/react-json-view/)
+> 🌐 **Interactive Storybook Demo:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
 
 Comprehensive reference of all props accepted by `<ReactJson />` (`ReactJsonView`).
 
@@ -42,7 +42,7 @@ Explore and inspect every prop accepted by `<ReactJson />` with Storybook's inte
 #### `plugins`
 - **Type:** `JsonViewPlugin[]`
 - **Default:** `[]`
-- **Description:** Registered plugins that extend `<JsonViewer />` via structured slot hooks: `renderRowActions`, `renderValue`, `renderRootOverlay`, and `renderTree`. Includes tree-shakeable subpath plugins such as `withClipboard()` from `react-json-view/plugins/clipboard`.
+- **Description:** Registered plugins that extend `<JsonViewer />` via structured slot hooks: `renderRowActions`, `renderValue`, `renderRootOverlay`, and `renderTree`. Includes tree-shakeable subpath plugins such as `withClipboard()` from `react-json-view-next/plugins/clipboard`.
 
 ---
 
@@ -207,7 +207,7 @@ interface OnCopyProps {
 
 ## Migration Guide (v1 -> v2)
 
-### Zero-Code-Change Drop-in Bridge (`react-json-view/compat`)
+### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
 If you are upgrading from legacy `react-json-view` v1 and want 100% backward compatibility without changing any props (`onEdit`, `onAdd`, `onDelete`, `enableClipboard`, Base16 string themes), simply change your import:
 
 ```tsx
@@ -215,7 +215,7 @@ If you are upgrading from legacy `react-json-view` v1 and want 100% backward com
 import ReactJson from 'react-json-view';
 
 // After (v2 zero-code-change drop-in)
-import ReactJson from 'react-json-view/compat';
+import ReactJson from 'react-json-view-next/compat';
 
 <ReactJson
   src={data}
@@ -229,11 +229,11 @@ import ReactJson from 'react-json-view/compat';
 
 ### Migration Comparison Table
 
-| Feature / Prop | Legacy (v1) | Core (`react-json-view`) | Recommended Modern Approach (v2) | Compat (`react-json-view/compat`) |
+| Feature / Prop | Legacy (v1) | Core (`react-json-view-next`) | Recommended Modern Approach (v2) | Compat (`react-json-view-next/compat`) |
 |---|---|---|---|---|
 | **JSON Tree Viewing** | Built-in | Built-in (`<JsonViewer />`) | `<JsonViewer src={data} />` | `<ReactJsonCompat src={data} />` |
-| **Clipboard (`enableClipboard`)** | Prop `enableClipboard` | Excluded for tree-shaking | `plugins={[withClipboard()]}` from `react-json-view/plugins/clipboard` | Prop `enableClipboard` (auto-wired) |
-| **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired) |
-| **Themes (Base16 / Custom)** | 40+ themes bundled | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view/themes'` or custom `ThemeObject` | String theme names (e.g. `theme="monokai"`) auto-resolved |
+| **Clipboard (`enableClipboard`)** | Prop `enableClipboard` | Excluded for tree-shaking | `plugins={[withClipboard()]}` from `react-json-view-next/plugins/clipboard` | Prop `enableClipboard` (auto-wired) |
+| **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view-next/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired) |
+| **Themes (Base16 / Custom)** | 40+ themes bundled | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view-next/themes'` or custom `ThemeObject` | String theme names (e.g. `theme="monokai"`) auto-resolved |
 | **Bundle Size** | ~150 kB+ | ~15 kB (gzipped ~4 kB) | Pay only for plugins & themes you use | ~35 kB (bundles editor + clipboard + themes) |
 

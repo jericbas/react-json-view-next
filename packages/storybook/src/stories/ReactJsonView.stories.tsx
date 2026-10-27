@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 const sampleData = {
   string: 'this is a test string',
@@ -28,7 +28,7 @@ const meta: Meta<typeof ReactJson> = {
     docs: {
       description: {
         component:
-          '> 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript. Live Storybook Demo & Documentation: [https://jericbas.github.io/react-json-view/](https://jericbas.github.io/react-json-view/)'
+          '> 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript. Live Storybook Demo & Documentation: [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)'
       }
     }
   },

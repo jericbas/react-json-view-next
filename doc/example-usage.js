@@ -1,5 +1,5 @@
 
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 //you have some json to display
 const my_important_json = {
@@ -31,7 +31,7 @@ const my_important_json = {
 
 
 // ES6 with React
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 ...
 <ReactJson src={my_important_json} />
@@ -46,7 +46,7 @@ import ReactJson from 'react-json-view';
 ...
 <script src="https://unpkg.com/react@15/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-<script src="https://unpkg.com/react-json-view"></script>
+<script src="https://unpkg.com/react-json-view-next"></script>
 <script type="text/javascript">
   // reactJsonView is a global variable
   var jsonView = new reactJsonView.default({

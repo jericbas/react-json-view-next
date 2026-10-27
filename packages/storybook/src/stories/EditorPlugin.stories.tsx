@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { JsonViewer } from 'react-json-view';
-import { withClipboard } from 'react-json-view/plugins/clipboard';
-import { withAdd, withDelete, withEdit, withEditor } from 'react-json-view/plugins/editor';
+import { JsonViewer } from 'react-json-view-next';
+import { withClipboard } from 'react-json-view-next/plugins/clipboard';
+import { withAdd, withDelete, withEdit, withEditor } from 'react-json-view-next/plugins/editor';
 
 const sampleUserData = {
   id: 101,
@@ -23,7 +23,7 @@ const meta: Meta<typeof JsonViewer> = {
     docs: {
       description: {
         component:
-          'Interactive editing capabilities via the tree-shakeable Editor Plugin (`react-json-view/plugins/editor`). Supports `withEditor`, granular factories (`withEdit`, `withAdd`, `withDelete`), Ctrl/Cmd + click editing, type preview, add-key modal, and validation banners.'
+          'Interactive editing capabilities via the tree-shakeable Editor Plugin (`react-json-view-next/plugins/editor`). Supports `withEditor`, granular factories (`withEdit`, `withAdd`, `withDelete`), Ctrl/Cmd + click editing, type preview, add-key modal, and validation banners.'
       }
     }
   }

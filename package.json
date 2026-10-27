@@ -1,5 +1,5 @@
 {
-  "name": "react-json-view-monorepo",
+  "name": "react-json-view-next-monorepo",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -13,8 +13,9 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "test:run": "npm run test:run --workspaces --if-present",
-    "test:watch": "npm run test:watch --workspace=packages/react-json-view",
-    "test:coverage": "npm run test:coverage --workspace=packages/react-json-view",
+    "test:watch": "npm run test:watch --workspace=packages/react-json-view-next",
+    "test:coverage": "npm run test:coverage --workspace=packages/react-json-view-next",
+    "test:perf": "npm run test --workspace=packages/react-json-view-next -- test/performance/benchmark.test.tsx",
     "test:e2e": "playwright test",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "storybook": "npm run storybook --workspace=packages/storybook",
@@ -28,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jericbas/react-json-view.git"
+    "url": "https://github.com/jericbas/react-json-view-next.git"
   },
   "author": "Jeric Bas",
   "license": "MIT"

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson from 'react-json-view';
-import { withVirtualizer } from 'react-json-view/plugins/virtual';
+import ReactJson from 'react-json-view-next';
+import { withVirtualizer } from 'react-json-view-next/plugins/virtual';
 
 const thousandItems = new Array(1000).fill(null).map((_, i) => ({
   id: `item-${i + 1}`,

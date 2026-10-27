@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { JsonViewer } from 'react-json-view';
-import { withClipboard } from 'react-json-view/plugins/clipboard';
+import { JsonViewer } from 'react-json-view-next';
+import { withClipboard } from 'react-json-view-next/plugins/clipboard';
 
 const sampleUserData = {
   id: 101,
@@ -21,7 +21,7 @@ const meta: Meta<typeof JsonViewer> = {
     docs: {
       description: {
         component:
-          'Demonstrates the independent, tree-shakeable Clipboard Plugin (`react-json-view/plugins/clipboard`). Supports copying JSON values, key paths, custom formatting, and copy callbacks.'
+          'Demonstrates the independent, tree-shakeable Clipboard Plugin (`react-json-view-next/plugins/clipboard`). Supports copying JSON values, key paths, custom formatting, and copy callbacks.'
       }
     }
   }

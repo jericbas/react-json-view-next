@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 const largeArray = Array.from({ length: 250 }, (_, i) => ({
   id: i + 1,

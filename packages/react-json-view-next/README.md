@@ -1,25 +1,25 @@
 ![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/rjv-icon-alt.png?raw=true)
 
-[![npm](https://img.shields.io/npm/v/react-json-view.svg)](https://www.npmjs.com/package/react-json-view) [![npm](https://img.shields.io/npm/l/react-json-view.svg)](./LICENSE) [![CI](https://github.com/jericbas/react-json-view/actions/workflows/ci.yml/badge.svg)](https://github.com/jericbas/react-json-view/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/react-json-view-next.svg)](https://www.npmjs.com/package/react-json-view-next) [![npm](https://img.shields.io/npm/l/react-json-view-next.svg)](./LICENSE) [![CI](https://github.com/jericbas/react-json-view-next/actions/workflows/ci.yml/badge.svg)](https://github.com/jericbas/react-json-view-next/actions/workflows/ci.yml)
 
-# react-json-view
+# react-json-view-next
 
 > 🚧 **Under Construction**: This repository is currently undergoing active modernization and development. We are updating the library with complete React 19 support, a TypeScript rewrite, an NPM workspaces monorepo architecture, and automated CI/CD pipelines. Features and documentation are evolving.
 >
-> 🚀 **Live Storybook Demo & Documentation:** [https://jericbas.github.io/react-json-view/](https://jericbas.github.io/react-json-view/)
+> 🚀 **Live Storybook Demo & Documentation:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
 
 RJV is a React component for displaying and editing javascript **arrays** and **JSON objects**.
 
 This component provides a responsive interface for displaying arrays or JSON in a web browser. NPM offers a distribution of the source that's transpiled to ES5; so you can include this component with _any web-based javascript application_.
-- 📖 **Storybook Demo:** [https://jericbas.github.io/react-json-view/](https://jericbas.github.io/react-json-view/)
-- 📘 **Props Reference:** [Storybook Props Documentation](https://jericbas.github.io/react-json-view/?path=/docs/documentation-props--docs)
+- 📖 **Storybook Demo:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
+- 📘 **Props Reference:** [Storybook Props Documentation](https://jericbas.github.io/react-json-view-next/?path=/docs/documentation-props--docs)
 
 
 ### Implementation Example
 
 Using `<JsonViewer />` with strict TypeScript:
 ```tsx
-import { JsonViewer, type JsonViewerProps } from 'react-json-view';
+import { JsonViewer, type JsonViewerProps } from 'react-json-view-next';
 
 const props: JsonViewerProps = {
   src: my_json_object,
@@ -34,7 +34,7 @@ const props: JsonViewerProps = {
 
 Default import compatibility:
 ```jsx
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 // use the component in your app!
 <ReactJson src={my_json_object} />;
@@ -50,7 +50,7 @@ import ReactJson from 'react-json-view';
 
 Example plugin:
 ```tsx
-import { JsonViewer, type JsonViewPlugin } from 'react-json-view';
+import { JsonViewer, type JsonViewPlugin } from 'react-json-view-next';
 
 const linkifierPlugin: JsonViewPlugin = {
   name: 'url-linkifier',
@@ -71,12 +71,12 @@ const linkifierPlugin: JsonViewPlugin = {
 
 #### Built-in Tree-Shakeable Plugins
 
-##### Clipboard Plugin (`react-json-view/plugins/clipboard`)
+##### Clipboard Plugin (`react-json-view-next/plugins/clipboard`)
 
 Enable copy-to-clipboard functionality on primitive and container rows without bundling any editor/mutation code:
 ```tsx
-import { JsonViewer } from 'react-json-view';
-import { withClipboard } from 'react-json-view/plugins/clipboard';
+import { JsonViewer } from 'react-json-view-next';
+import { withClipboard } from 'react-json-view-next/plugins/clipboard';
 
 // Default: copies JSON-stringified value
 <JsonViewer src={my_json_object} plugins={[withClipboard()]} />;
@@ -96,12 +96,12 @@ import { withClipboard } from 'react-json-view/plugins/clipboard';
 />;
 ```
 
-##### Editor Plugin (`react-json-view/plugins/editor`)
+##### Editor Plugin (`react-json-view-next/plugins/editor`)
 
 Enable interactive editing, key additions, and deletions without bundling unused modules:
 ```tsx
-import { JsonViewer } from 'react-json-view';
-import { withEditor, withEdit, withAdd, withDelete } from 'react-json-view/plugins/editor';
+import { JsonViewer } from 'react-json-view-next';
+import { withEditor, withEdit, withAdd, withDelete } from 'react-json-view-next/plugins/editor';
 
 // Full editor suite (Edit, Add, Delete)
 <JsonViewer
@@ -130,12 +130,12 @@ import { withEditor, withEdit, withAdd, withDelete } from 'react-json-view/plugi
 />;
 ```
 
-##### Search Plugin (`react-json-view/plugins/search`)
+##### Search Plugin (`react-json-view-next/plugins/search`)
 
 Enable interactive key/value search, substring highlighting, and JSONPath querying:
 ```tsx
-import { JsonViewer } from 'react-json-view';
-import { withSearch } from 'react-json-view/plugins/search';
+import { JsonViewer } from 'react-json-view-next';
+import { withSearch } from 'react-json-view-next/plugins/search';
 
 <JsonViewer
   src={my_json_object}
@@ -149,12 +149,12 @@ import { withSearch } from 'react-json-view/plugins/search';
 />;
 ```
 
-##### Virtualization Plugin (`react-json-view/plugins/virtual`)
+##### Virtualization Plugin (`react-json-view-next/plugins/virtual`)
 
 Effortlessly render massive datasets (100k+ nodes) with virtual windowing:
 ```tsx
-import { JsonViewer } from 'react-json-view';
-import { withVirtualizer } from 'react-json-view/plugins/virtual';
+import { JsonViewer } from 'react-json-view-next';
+import { withVirtualizer } from 'react-json-view-next/plugins/virtual';
 
 <JsonViewer
   src={large_100k_dataset}
@@ -170,11 +170,11 @@ import { withVirtualizer } from 'react-json-view/plugins/virtual';
 
 ### Async Data Fetching with React 19 `use()` & `<Suspense>`
 
-With React 19, `react-json-view` natively unwraps asynchronous `Promise<object>` values passed directly to the `src` prop using React's `use()` hook! Wrap your `<ReactJson />` component in a React `<Suspense>` boundary to display a fallback while the data is loading:
+With React 19, `react-json-view-next` natively unwraps asynchronous `Promise<object>` values passed directly to the `src` prop using React's `use()` hook! Wrap your `<ReactJson />` component in a React `<Suspense>` boundary to display a fallback while the data is loading:
 
 ```tsx
 import React, { Suspense } from 'react';
-import ReactJson from 'react-json-view';
+import ReactJson from 'react-json-view-next';
 
 // Fetch promise
 const jsonPromise = fetch('https://api.example.com/data').then(res => res.json());
@@ -199,9 +199,9 @@ function AsyncJsonViewer() {
 
 ### Installation Instructions
 
-Install this component with [NPM](https://www.npmjs.com/package/react-json-view). RJV requires React 19+ (`react` and `react-dom` `^19.0.0` as peer dependencies).
+Install this component with [NPM](https://www.npmjs.com/package/react-json-view-next). RJV requires React 19+ (`react` and `react-dom` `^19.0.0` as peer dependencies).
 ```shell
-npm install --save react-json-view
+npm install --save react-json-view-next
 ```
 Ensure you have React 19+ installed in your project:
 ```shell
@@ -212,13 +212,13 @@ Or add to your package.json config file:
 "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-json-view": "latest"
+    "react-json-view-next": "latest"
 }
 ```
 
 ### Props & Documentation
 
-For the complete and interactive props reference, callbacks guide, and live component playground, please visit our **[Storybook Documentation](https://jericbas.github.io/react-json-view/?path=/docs/documentation-props--docs)**.
+For the complete and interactive props reference, callbacks guide, and live component playground, please visit our **[Storybook Documentation](https://jericbas.github.io/react-json-view-next/?path=/docs/documentation-props--docs)**.
 
 ### Features
 
@@ -243,7 +243,7 @@ You can specify a `theme` name or object when you instantiate your rjv component
 ```jsx
 <ReactJson src={my_important_json} theme="monokai" />;
 ```
-Check out the list of supported themes [in the Storybook demo](https://jericbas.github.io/react-json-view/). A custom "rjv-default" theme applies by default.
+Check out the list of supported themes [in the Storybook demo](https://jericbas.github.io/react-json-view-next/). A custom "rjv-default" theme applies by default.
 
 #### Monokai theme example
 
@@ -282,7 +282,7 @@ Returning `false` from a callback method will prevent the src from being affecte
 
 ```bash
 # clone this repository
-git clone git@github.com:jericbas/react-json-view.git && cd react-json-view
+git clone git@github.com:jericbas/react-json-view-next.git && cd react-json-view-next
 # install dependencies
 npm install
 # start the Storybook dev server with hot reloading
@@ -293,7 +293,7 @@ Storybook will start the local development server at `http://localhost:6006` wit
 #### Run the Production Library Build
 
 ```bash
-# build the library (generates ESM, CJS, and .d.ts in packages/react-json-view/dist/)
+# build the library (generates ESM, CJS, and .d.ts in packages/react-json-view-next/dist/)
 npm run build
 ```
 
@@ -333,7 +333,7 @@ A zero-dependency Git pre-commit hook in `.githooks/pre-commit` runs `biome chec
 
 ### Migration Guide (v1 -> v2)
 
-#### Zero-Code-Change Drop-in Bridge (`react-json-view/compat`)
+#### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
 
 If you are upgrading from legacy `react-json-view` v1 and want 100% backward compatibility without changing any props (`onEdit`, `onAdd`, `onDelete`, `enableClipboard`, Base16 string themes), simply change your import:
 
@@ -342,7 +342,7 @@ If you are upgrading from legacy `react-json-view` v1 and want 100% backward com
 import ReactJson from 'react-json-view';
 
 // After (v2 zero-code-change drop-in)
-import ReactJson from 'react-json-view/compat';
+import ReactJson from 'react-json-view-next/compat';
 
 <ReactJson
   src={data}
@@ -356,13 +356,13 @@ import ReactJson from 'react-json-view/compat';
 
 #### Migration Table: Core vs Plugins vs Compat
 
-| Feature / Prop                              | Legacy (v1)                         | Core (`react-json-view`)               | Recommended Modern Approach (v2)                                                            | Compat (`react-json-view/compat`)                         |
-| ------------------------------------------- | ----------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| **JSON Tree Viewing**                       | Built-in                            | Built-in (`<JsonViewer />`)            | `<JsonViewer src={data} />`                                                                 | `<ReactJsonCompat src={data} />`                          |
-| **Clipboard (`enableClipboard`)**           | Prop `enableClipboard`              | Excluded for tree-shaking              | `plugins={[withClipboard()]}` from `react-json-view/plugins/clipboard`                      | Prop `enableClipboard` (auto-wired)                       |
-| **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking              | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired)          |
-| **Themes (Base16 / Custom)**                | 40+ themes bundled                  | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view/themes'` or custom `ThemeObject`                  | String theme names (e.g. `theme="monokai"`) auto-resolved |
-| **Bundle Size**                             | ~150 kB+                            | ~15 kB (gzipped ~4 kB)                 | Pay only for plugins & themes you use                                                       | ~35 kB (bundles editor + clipboard + themes)              |
+| Feature / Prop                              | Legacy (v1)                         | Core (`react-json-view-next`)          | Recommended Modern Approach (v2)                                                                 | Compat (`react-json-view-next/compat`)                    |
+| ------------------------------------------- | ----------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| **JSON Tree Viewing**                       | Built-in                            | Built-in (`<JsonViewer />`)            | `<JsonViewer src={data} />`                                                                      | `<ReactJsonCompat src={data} />`                          |
+| **Clipboard (`enableClipboard`)**           | Prop `enableClipboard`              | Excluded for tree-shaking              | `plugins={[withClipboard()]}` from `react-json-view-next/plugins/clipboard`                      | Prop `enableClipboard` (auto-wired)                       |
+| **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking              | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view-next/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired)          |
+| **Themes (Base16 / Custom)**                | 40+ themes bundled                  | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view-next/themes'` or custom `ThemeObject`                  | String theme names (e.g. `theme="monokai"`) auto-resolved |
+| **Bundle Size**                             | ~150 kB+                            | ~15 kB (gzipped ~4 kB)                 | Pay only for plugins & themes you use                                                            | ~35 kB (bundles editor + clipboard + themes)              |
 
 ### Inspiration
 

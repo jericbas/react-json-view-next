@@ -59,7 +59,10 @@ const JsonViewerTree: React.FC<JsonViewerProps> = props => {
   }
 
   return (
-    <div className="react-json-view" style={{ ...Theme(theme, 'app-container').style, ...style }}>
+    <div
+      className="react-json-view react-json-view-next"
+      style={{ ...Theme(theme, 'app-container').style, ...style }}
+    >
       {plugins.map((plugin, idx) => (
         <React.Fragment key={plugin.name || `overlay-${idx}`}>
           {plugin.renderRootOverlay?.({ rjvId, theme, src })}

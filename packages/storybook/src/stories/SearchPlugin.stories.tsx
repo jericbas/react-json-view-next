@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReactJson from 'react-json-view';
-import { withSearch } from 'react-json-view/plugins/search';
+import ReactJson from 'react-json-view-next';
+import { withSearch } from 'react-json-view-next/plugins/search';
 
 const samplePayload = {
   appName: 'Antigravity CLI',
