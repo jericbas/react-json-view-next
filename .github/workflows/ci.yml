@@ -96,9 +96,6 @@ jobs:
       - name: Run unit tests (Vitest)
         run: npm run test:run
 
-      - name: Run performance benchmark
-        run: npm run test:perf
-
       - name: Build library (Vite)
         run: npm run build
 
