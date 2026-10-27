@@ -6,7 +6,8 @@
       "package-name": "react-json-view-next",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": false,
-      "bump-patch-for-minor-pre-major": false
+      "bump-patch-for-minor-pre-major": false,
+      "release-as": "2.0.0"
     }
   }
 }
