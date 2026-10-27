@@ -7,6 +7,10 @@
 > 🚧 **Under Construction**: This repository is currently undergoing active modernization and development. We are updating the library with complete React 19 support, a TypeScript rewrite, an NPM workspaces monorepo architecture, and automated CI/CD pipelines. Features and documentation are evolving.
 >
 > 🚀 **Live Storybook Demo & Documentation:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
+>
+> ℹ️ **Repository & Versioning Note**:
+> - **Version 1 (`v1.x`)**: Represents the original repository ([mac-s-g/react-json-view](https://github.com/mac-s-g/react-json-view)) created by Mac Gainor. The original codebase and final release (`v1.21.3`) are preserved on the [`main`](https://github.com/jericbas/react-json-view-next/tree/main) branch and tagged as [`v1.21.3`](https://github.com/jericbas/react-json-view-next/releases/tag/v1.21.3).
+> - **Version 2 (`v2.x`)**: Represents this modernized continuation (`react-json-view-next`), starting at `2.0.0` and rewritten from the ground up for React 19, strict TypeScript, modular tree-shakeable plugins, and high-performance rendering.
 
 RJV is a React component for displaying and editing javascript **arrays** and **JSON objects**.
 
@@ -332,6 +336,8 @@ npm run check:write
 A zero-dependency Git pre-commit hook in `.githooks/pre-commit` runs `biome check` and `tsc --noEmit` automatically on staged files before each commit.
 
 ### Migration Guide (v1 -> v2)
+
+> **Note on Versioning**: Version 1 (`v1.x`) refers to the original [mac-s-g/react-json-view](https://github.com/mac-s-g/react-json-view) repository (final release `v1.21.3`). Version 2 (`v2.x`) begins with `react-json-view-next` starting at `v2.0.0`, delivering complete React 19 support, strict TypeScript definitions, and tree-shakeable plugins.
 
 #### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
 
