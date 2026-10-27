@@ -5,13 +5,13 @@ import { withAdd, withDelete, withEdit, withEditor } from 'react-json-view-next/
 
 const sampleUserData = {
   id: 101,
-  username: 'jericbas',
+  username: 'keanu_reeves',
   active: true,
-  roles: ['maintainer', 'architect'],
+  roles: ['actor', 'musician'],
   profile: {
-    bio: 'Software engineer & open-source author',
-    location: 'Tokyo',
-    stars: 540
+    bio: 'Be excellent to each other',
+    location: 'Los Angeles',
+    stars: 1999
   }
 };
 

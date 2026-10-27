@@ -3,11 +3,11 @@ import { JsonViewer, type JsonViewPlugin } from 'react-json-view-next';
 
 const sampleUserData = {
   id: 101,
-  username: 'jericbas',
-  profileUrl: 'https://github.com/jericbas',
+  username: 'keanu_reeves',
+  profileUrl: 'https://en.wikipedia.org/wiki/Keanu_Reeves',
   primaryColor: '#61afef',
   status: 'active',
-  roles: ['maintainer', 'architect'],
+  roles: ['actor', 'musician'],
   settings: {
     notifications: true,
     theme: 'dark'
