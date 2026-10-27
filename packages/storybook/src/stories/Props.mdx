@@ -1,0 +1,239 @@
+import { Meta, ArgTypes } from '@storybook/addon-docs/blocks';
+import ReactJson from 'react-json-view-next';
+
+<Meta title="Documentation/Props" />
+
+# ReactJsonView Props Reference
+
+> 🚧 **Under Construction**: This library is actively undergoing modernization for React 19 and TypeScript. Props and features are continuously updated.
+>
+> 🌐 **Interactive Storybook Demo:** [https://jericbas.github.io/react-json-view-next/](https://jericbas.github.io/react-json-view-next/)
+
+Comprehensive reference of all props accepted by `<ReactJson />` (`ReactJsonView`).
+
+---
+
+## Interactive Props Table
+
+Explore and inspect every prop accepted by `<ReactJson />` with Storybook's interactive controls:
+
+<ArgTypes of={ReactJson} />
+
+---
+
+## Categorized Props Guide
+
+### 1. Core Data
+
+#### `src` *(required)*
+- **Type:** `object | Promise<object>`
+- **Description:** The root JavaScript object, array, or JSON data to display. In React 19, you can directly pass a `Promise<object>`; RJV unwraps it with React's `use()` hook when placed inside a `<Suspense>` boundary.
+
+#### `name`
+- **Type:** `string | null | false`
+- **Default:** `"root"`
+- **Description:** Name of the root object node. Pass `null` or `false` to hide the root label.
+
+#### `defaultValue`
+- **Type:** `string | number | boolean | array | object | null`
+- **Default:** `null`
+- **Description:** Default pre-filled value when adding a new property using the add key modal.
+
+#### `plugins`
+- **Type:** `JsonViewPlugin[]`
+- **Default:** `[]`
+- **Description:** Registered plugins that extend `<JsonViewer />` via structured slot hooks: `renderRowActions`, `renderValue`, `renderRootOverlay`, and `renderTree`. Includes tree-shakeable subpath plugins such as `withClipboard()` from `react-json-view-next/plugins/clipboard`.
+
+---
+
+### 2. Theming & Styling
+
+#### `theme`
+- **Type:** `ThemeKeys | ThemeObject`
+- **Default:** `"rjv-default"`
+- **Description:** Built-in theme name or a custom Base16 palette object, organized into three groups:
+  - **Original Base16 Themes:** `"rjv-default"`, `"rjv-grey"`, `"apathy"`, `"ashes"`, `"bespin"`, `"brewer"`, `"bright"`, `"chalk"`, `"codeschool"`, `"colors"`, `"eighties"`, `"embers"`, `"flat"`, `"google"`, `"grayscale"`, `"greenscreen"`, `"harmonic"`, `"hopscotch"`, `"isotope"`, `"marrakesh"`, `"mocha"`, `"monokai"`, `"ocean"`, `"paraiso"`, `"pop"`, `"railscasts"`, `"shapeshifter"`, `"solarized"`, `"summerfruit"`, `"threezerotwofour"`, `"tomorrow"`, `"tube"`, `"twilight"` (plus `:inverted` variants)
+  - **Popular Community Themes:** `"dracula"`, `"nord"`, `"gruvbox"`, `"onedark"`, `"catppuccin"`, `"tokyonight"`, `"rosepine"`, `"everforest"`, `"synthwave"`, `"nightowl"`
+  - **Custom / Invented Themes:** `"aurora"`, `"matcha"`, `"nebula"`, `"obsidian"`, `"sakura"`
+
+#### `style`
+- **Type:** `React.CSSProperties`
+- **Default:** `{}`
+- **Description:** Custom CSS styles applied directly to the root container `div`. Overrides theme styles.
+
+#### `iconStyle`
+- **Type:** `'triangle' | 'circle' | 'square'`
+- **Default:** `"triangle"`
+- **Description:** Visual icon style for expanding and collapsing object and array nodes.
+
+#### `indentWidth`
+- **Type:** `number`
+- **Default:** `4`
+- **Description:** Number of spaces indented for each level of nested objects and arrays.
+
+---
+
+### 3. Display & Formatting
+
+#### `collapsed`
+- **Type:** `boolean | number`
+- **Default:** `false`
+- **Description:** When `true`, collapses all nodes by default. If a number is provided (e.g., `1`), all nodes deeper than that depth are collapsed.
+
+#### `collapseStringsAfterLength`
+- **Type:** `number | false`
+- **Default:** `false`
+- **Description:** Truncates long strings after the specified length with an ellipsis (`...`). Clicking the string toggles full expansion.
+
+#### `shouldCollapse`
+- **Type:** `(field: CollapsedFieldProps) => boolean`
+- **Default:** `false`
+- **Description:** Custom callback executed per node to determine whether it should be collapsed by default.
+
+#### `groupArraysAfterLength`
+- **Type:** `number`
+- **Default:** `100`
+- **Description:** Breaks large arrays into paginated group buckets of the specified size (e.g., `[0 ... 99]`, `[100 ... 199]`).
+
+#### `displayObjectSize`
+- **Type:** `boolean`
+- **Default:** `true`
+- **Description:** When enabled, displays item counts next to objects and arrays (e.g., `{2 items}`).
+
+#### `displayDataTypes`
+- **Type:** `boolean`
+- **Default:** `true`
+- **Description:** When enabled, displays type indicator badges before primitive values (e.g., `string`, `int`, `float`).
+
+#### `quotesOnKeys`
+- **Type:** `boolean`
+- **Default:** `true`
+- **Description:** When `false`, removes enclosing double quotes from object property keys.
+
+#### `displayArrayKey`
+- **Type:** `boolean`
+- **Default:** `true`
+- **Description:** When enabled, displays zero-based indices next to array elements.
+
+#### `sortKeys`
+- **Type:** `boolean`
+- **Default:** `false`
+- **Description:** Sorts object keys alphabetically before rendering.
+
+---
+
+### 4. Interactivity & Editing
+
+#### `onEdit`
+- **Type:** `(edit: InteractionProps) => false | unknown`
+- **Default:** `false`
+- **Description:** Enables inline editing of variable values. Returning `false` from the callback cancels the edit.
+
+#### `onAdd`
+- **Type:** `(add: InteractionProps) => false | unknown`
+- **Default:** `false`
+- **Description:** Enables adding new key-value pairs to objects and arrays. Returning `false` aborts the addition.
+
+#### `onDelete`
+- **Type:** `(del: InteractionProps) => false | unknown`
+- **Default:** `false`
+- **Description:** Enables deleting keys or array elements. Returning `false` aborts the deletion.
+
+#### `onSelect`
+- **Type:** `(select: OnSelectProps) => void`
+- **Default:** `false`
+- **Description:** Fired when a user clicks on a value in the JSON tree.
+
+#### `enableClipboard`
+- **Type:** `boolean | ((copy: OnCopyProps) => void)`
+- **Default:** `true`
+- **Description:** Displays copy-to-clipboard icons on objects and values. Also accepts a custom copy callback function.
+
+#### `validationMessage`
+- **Type:** `string`
+- **Default:** `"Validation Error"`
+- **Description:** Custom validation tooltip message shown when `onEdit`, `onAdd`, or `onDelete` returns `false`.
+
+---
+
+## Callback Types
+
+### `InteractionProps`
+Passed to `onEdit`, `onAdd`, and `onDelete`:
+```typescript
+interface InteractionProps {
+  /** Updated copy of the JSON root after modification */
+  updated_src: object;
+  /** Property key or array index being modified */
+  name: string | null;
+  /** Hierarchical path array to the target variable */
+  namespace: (string | number | null)[];
+  /** New value entered by user (for edit and add operations) */
+  new_value?: unknown;
+  /** Existing value before the modification */
+  existing_value?: unknown;
+}
+```
+
+### `CollapsedFieldProps`
+Passed to `shouldCollapse`:
+```typescript
+interface CollapsedFieldProps {
+  /** Property name of the field */
+  name: string | null;
+  /** Value of the field (object or array) */
+  src: object;
+  /** Object/array type */
+  type: string;
+  /** Current depth in the JSON tree */
+  namespace: (string | number | null)[];
+}
+```
+
+### `OnCopyProps`
+Passed to `enableClipboard` when provided as a function:
+```typescript
+interface OnCopyProps {
+  /** Value copied to clipboard */
+  src: unknown;
+  /** Path namespace of the copied variable */
+  namespace: (string | number | null)[];
+  /** Key name of the copied variable */
+  name: string | null;
+}
+```
+
+---
+
+## Migration Guide (v1 -> v2)
+
+### Zero-Code-Change Drop-in Bridge (`react-json-view-next/compat`)
+If you are upgrading from legacy `react-json-view` v1 and want 100% backward compatibility without changing any props (`onEdit`, `onAdd`, `onDelete`, `enableClipboard`, Base16 string themes), simply change your import:
+
+```tsx
+// Before (v1)
+import ReactJson from 'react-json-view';
+
+// After (v2 zero-code-change drop-in)
+import ReactJson from 'react-json-view-next/compat';
+
+<ReactJson
+  src={data}
+  theme="monokai"
+  enableClipboard={true}
+  onEdit={edit => console.log(edit)}
+  onAdd={add => console.log(add)}
+  onDelete={del => console.log(del)}
+/>;
+```
+
+### Migration Comparison Table
+
+| Feature / Prop | Legacy (v1) | Core (`react-json-view-next`) | Recommended Modern Approach (v2) | Compat (`react-json-view-next/compat`) |
+|---|---|---|---|---|
+| **JSON Tree Viewing** | Built-in | Built-in (`<JsonViewer />`) | `<JsonViewer src={data} />` | `<ReactJsonCompat src={data} />` |
+| **Clipboard (`enableClipboard`)** | Prop `enableClipboard` | Excluded for tree-shaking | `plugins={[withClipboard()]}` from `react-json-view-next/plugins/clipboard` | Prop `enableClipboard` (auto-wired) |
+| **Editing (`onEdit`, `onAdd`, `onDelete`)** | Props `onEdit`, `onAdd`, `onDelete` | Excluded for tree-shaking | `plugins={[withEditor({ onEdit, onAdd, onDelete })]}` from `react-json-view-next/plugins/editor` | Props `onEdit`, `onAdd`, `onDelete` (auto-wired) |
+| **Themes (Base16 / Custom)** | 40+ themes bundled | Zero-config `rjv-default` & `rjv-grey` | `import { monokai } from 'react-json-view-next/themes'` or custom `ThemeObject` | String theme names (e.g. `theme="monokai"`) auto-resolved |
+| **Bundle Size** | ~150 kB+ | ~15 kB (gzipped ~4 kB) | Pay only for plugins & themes you use | ~35 kB (bundles editor + clipboard + themes) |
+

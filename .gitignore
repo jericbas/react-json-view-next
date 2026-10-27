@@ -1,9 +1,11 @@
 *.swp
 npm-debug.log
 
-/coverage
-/dist
-/debug
-/node_modules
-
+node_modules/
+dist/
+coverage/
+storybook-static/
+playwright-report/
+test-results/
 .nyc_output
+/debug

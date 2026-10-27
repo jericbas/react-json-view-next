@@ -1,0 +1,129 @@
+{
+  "name": "react-json-view-next",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Interactive JSON viewer component for React 19 with Base16 theming and strict TypeScript",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    },
+    "./plugins/clipboard": {
+      "types": "./dist/plugins/clipboard/index.d.ts",
+      "import": "./dist/plugins/clipboard/index.mjs",
+      "require": "./dist/plugins/clipboard/index.cjs",
+      "default": "./dist/plugins/clipboard/index.mjs"
+    },
+    "./plugins/editor": {
+      "types": "./dist/plugins/editor/index.d.ts",
+      "import": "./dist/plugins/editor/index.mjs",
+      "require": "./dist/plugins/editor/index.cjs",
+      "default": "./dist/plugins/editor/index.mjs"
+    },
+    "./plugins/search": {
+      "types": "./dist/plugins/search/index.d.ts",
+      "import": "./dist/plugins/search/index.mjs",
+      "require": "./dist/plugins/search/index.cjs",
+      "default": "./dist/plugins/search/index.mjs"
+    },
+    "./plugins/virtual": {
+      "types": "./dist/plugins/virtual/index.d.ts",
+      "import": "./dist/plugins/virtual/index.mjs",
+      "require": "./dist/plugins/virtual/index.cjs",
+      "default": "./dist/plugins/virtual/index.mjs"
+    },
+    "./themes": {
+      "types": "./dist/themes/index.d.ts",
+      "import": "./dist/themes/index.mjs",
+      "require": "./dist/themes/index.cjs",
+      "default": "./dist/themes/index.mjs"
+    },
+    "./compat": {
+      "types": "./dist/compat/index.d.ts",
+      "import": "./dist/compat/index.mjs",
+      "require": "./dist/compat/index.cjs",
+      "default": "./dist/compat/index.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "plugins/clipboard": [
+        "./dist/plugins/clipboard/index.d.ts"
+      ],
+      "plugins/editor": [
+        "./dist/plugins/editor/index.d.ts"
+      ],
+      "plugins/search": [
+        "./dist/plugins/search/index.d.ts"
+      ],
+      "plugins/virtual": [
+        "./dist/plugins/virtual/index.d.ts"
+      ],
+      "themes": [
+        "./dist/themes/index.d.ts"
+      ],
+      "compat": [
+        "./dist/compat/index.d.ts"
+      ]
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/coverage-v8": "^5.0.5",
+    "jsdom": "^16.7.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:run": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:perf": "vitest run test/performance/benchmark.test.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jericbas/react-json-view-next.git"
+  },
+  "keywords": [
+    "react-json-view-next",
+    "react-json-view",
+    "react",
+    "react-19",
+    "json",
+    "json-view",
+    "json-viewer",
+    "json-tree",
+    "base-16",
+    "typescript"
+  ],
+  "author": "Jeric Bas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jericbas/react-json-view-next/issues"
+  },
+  "homepage": "https://github.com/jericbas/react-json-view-next#readme"
+}
